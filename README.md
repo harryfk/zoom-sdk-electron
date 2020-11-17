@@ -25,17 +25,32 @@
 - [Acknowledgments](#acknowledgments)   
 
 ## Latest SDK News
-1. On macOS, SDK will verify the signature of all libraries. When the SDK libraries have been resigned, please call the interface `setTeamIdentifier` to set the organization unit of the signature before initializing in the app. For example:
+1. In version 5.2.42037.1112 of the Electron SDK,the support for Protocol Buffers is being added.
+
+If you are building your own version of the Electron SDK, you will need to follow these steps:
+* Download  protobuf 3.4.0 source file and rename the src folder to protobuf_src.
+* Copy the src folder into the lib/node_add_on folder.
+* Run the build_nodeaddon script.
+
+If you would like to use recent versions of protobuf(higher than 3.4.0), in addition to following the above steps, you must also do the following:
+
+* Download the execution file of the corresponding protobuf and add its directory into the system path.
+* In the terminal, navigate to the root directory of the Electron SDK(same level as the build_nodeaddon file).
+* Run protoc.exe —js_out=import_style=common.js,binary:. lib/electron_sdk_proto command in the terminal to generate a electron_sdk_pb.js file. After generating this file, you will be able to use the interfaces provided by the Electron SDK.
+
+If you are not building your own version of the Electron SDK and are using the Electron SDK provided by Zoom, this change will not impact your app and no further action is required on your end.
+
+2. On macOS, SDK will verify the signature of all libraries. When the SDK libraries have been resigned, please call the interface `setTeamIdentifier` to set the organization unit of the signature before initializing in the app. For example:
 ```
     setTeamIdentifier(“the ou of certificate”);
 ```
      Otherwise, some features, such as virtual background will not work after resigning the app.
 
-2. Starting from 5.2.41735.0929, building the Electron SDK on Windows requires building with Visual Studio 2019.
-3. Starting from Client SDK 5.0, if you are using tokens to start a meeting, you will only need to retrieve ZAK from Zoom API. The user token has been deprecated. 
-4. To follow with Zoom client's recent changes, Zoom SDK has temporary remove the "Unmute All" interface in Client SDK 5.0.
-5. To align with Zoom’s [recent announcement](https://blog.zoom.us/wordpress/2020/04/22/zoom-hits-milestone-on-90-day-security-plan-releases-zoom-5-0/) pertaining to our security initiative, Zoom Client SDKs have added **AES 256-bit GCM encryption** support, which provides more protection for meeting data and greater resistance to tampering. **The system-wide account enablement of AES 256-bit GCM encryption will take place on June 01.** You are **strongly recommended** to start the required upgrade to this latest version 4.6.21666.0428 at your earliest convenience. Please note that any Client SDK versions below 4.6.21666.0428 will **no longer be operational** from June 01.
-6. We have merged and unified the `windows-electron-sdk` and the `mac-electron-sdk` into one single SDK.
+3. Starting from 5.2.41735.0929, building the Electron SDK on Windows requires building with Visual Studio 2019.
+4. Starting from Client SDK 5.0, if you are using tokens to start a meeting, you will only need to retrieve ZAK from Zoom API. The user token has been deprecated. 
+5. To follow with Zoom client's recent changes, Zoom SDK has temporary remove the "Unmute All" interface in Client SDK 5.0.
+6. To align with Zoom’s [recent announcement](https://blog.zoom.us/wordpress/2020/04/22/zoom-hits-milestone-on-90-day-security-plan-releases-zoom-5-0/) pertaining to our security initiative, Zoom Client SDKs have added **AES 256-bit GCM encryption** support, which provides more protection for meeting data and greater resistance to tampering. **The system-wide account enablement of AES 256-bit GCM encryption will take place on June 01.** You are **strongly recommended** to start the required upgrade to this latest version 4.6.21666.0428 at your earliest convenience. Please note that any Client SDK versions below 4.6.21666.0428 will **no longer be operational** from June 01.
+7. We have merged and unified the `windows-electron-sdk` and the `mac-electron-sdk` into one single SDK.
 The new Electron SDK has a brand new structure, consist of the node-interface and the node-core:
 
 * Node-interface: contains all the implementations by V8 engine
