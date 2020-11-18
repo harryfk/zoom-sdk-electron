@@ -112,13 +112,14 @@ Please make sure that you have configured your development environment successfu
 #### For Win Platform
 
 1. Run `build_nodeaddon_win_ia32.bat` to rebuild the node file.    
-2. Run `run_demo_win.bat` to run the zoom demo.
-3. Please make sure after building the .node file, save the .pdb file for trouble shooting.
+2. Run `npm install` to install google-protobuf, the Electron SDK demo is using version 3.4.0
+3. Run `run_demo_win.bat` to run the zoom demo.
+4. Please make sure after building the .node file, save the .pdb file for trouble shooting.
 
 #### For MAC Platform
 1. Run `sh build_nodeaddon_mac.sh` to rebuild the node file.
-
-2. Run `sh run_demo_mac.sh` to run the zoom demo.
+2. Run `npm install` to install google-protobuf, the Electron SDK demo is using version 3.4.0
+3. Run `sh run_demo_mac.sh` to run the zoom demo.
 
 ### Development environment configuration for Windows
 	Note that Windows electron add-on is 32bit.
