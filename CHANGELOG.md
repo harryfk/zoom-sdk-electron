@@ -69,6 +69,7 @@ You do not need to secret base64 encoded your signature. Once the JWT token is g
   * Added `encodeType`
 * Added new parameters to interface `Setting_IsHardwareEncodeEnabled` in zoom_setting_video.js
   * Added `encodeType`
+* Removed the watermark by default. If you wish to retain the Zoom watermark, please contact us via developersupport@zoom.us.
 
 ## 2020-10-26 @ v5.2.41762.1027
 
